@@ -10,7 +10,7 @@ s.author             = { "Eugene Mozharovsky" => "mozharovsky@live.com" }
 s.social_media_url   = "https://twitter.com/DottieYottie"
 s.platform     = :ios, "8.0"
 s.ios.deployment_target = "8.0"
-s.source       = { :git => "https://github.com/Mozharovsky/CVCalendar.git", :tag => s.version }
+s.source       = { :git => "https://github.com/yezheng1981/CVCalendar.git", :tag => s.version }
 s.source_files  = "CVCalendar/*.swift"
 s.requires_arc = true
 
