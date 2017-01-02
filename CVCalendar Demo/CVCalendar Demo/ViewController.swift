@@ -109,7 +109,7 @@ extension ViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     }
     
     func dayOfWeekTextColor(by weekday: Weekday) -> UIColor {
-        return weekday == .sunday ? UIColor(red: 1.0, green: 0, blue: 0, alpha: 1.0) : UIColor.white
+        return weekday == .sunday ? UIColor(red: 1.0, green: 0, blue: 0, alpha: 1.0) : UIColor.black
     }
     
     func shouldShowWeekdaysOut() -> Bool {
@@ -283,19 +283,19 @@ extension ViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     }
     
     func supplementaryView(shouldDisplayOnDayView dayView: DayView) -> Bool {
-        if (Int(arc4random_uniform(3)) == 1) {
-            return true
-        }
+        //if (Int(arc4random_uniform(3)) == 1) {
+        //    return true
+        //}
         
         return false
     }
     
     func dayOfWeekTextColor() -> UIColor {
-        return UIColor.white
+        return UIColor.black
     }
     
     func dayOfWeekBackGroundColor() -> UIColor {
-        return UIColor.orange
+        return UIColor.white
     }
         
     func disableScrollingBeforeDate() -> Date {
