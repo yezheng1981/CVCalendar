@@ -40,6 +40,8 @@ class ViewController: UIViewController {
         if let timeZone = TimeZone.init(secondsFromGMT: -timeZoneBias * 60) {
             currentCalendar?.timeZone = timeZone
         }
+        randomizeDotMarkers()
+
     }
     
     // MARK: - Life cycle
@@ -51,7 +53,6 @@ class ViewController: UIViewController {
             monthLabel.text = CVDate(date: Date(), calendar: currentCalendar).globalDescription
         }
         
-        randomizeDotMarkers()
     }
     
     @IBAction func removeCircleAndDot(sender: AnyObject) {
@@ -82,7 +83,7 @@ class ViewController: UIViewController {
     private func randomizeDotMarkers() {
         randomNumberOfDotMarkersForDay = [Int]()
         for _ in 0...31 {
-            randomNumberOfDotMarkersForDay.append(Int(arc4random_uniform(3) + 1))
+            randomNumberOfDotMarkersForDay.append(Int(arc4random_uniform(3)))
         }
     }
 }
@@ -120,7 +121,7 @@ extension ViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     }
     
     private func shouldSelectDayView(dayView: DayView) -> Bool {
-        return arc4random_uniform(3) == 0 ? true : false
+        return false
     }
     
     func shouldAutoSelectDayOnMonthChange() -> Bool {
@@ -132,11 +133,11 @@ extension ViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     }
     
     func shouldSelectRange() -> Bool {
-        return true
+        return false
     }
     
     func didSelectRange(from startDayView: DayView, to endDayView: DayView) {
-        print("RANGE SELECTED: \(startDayView.date.commonDescription) to \(endDayView.date.commonDescription)")
+        //print("RANGE SELECTED: \(startDayView.date.commonDescription) to \(endDayView.date.commonDescription)")
     }
     
     func presentedDateUpdated(_ date: CVDate) {
@@ -180,6 +181,39 @@ extension ViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     func topMarker(shouldDisplayOnDayView dayView: CVCalendarDayView) -> Bool {
         return true
     }
+    
+    func dotMarker(shouldMoveOnHighlightingOnDayView dayView: DayView) -> Bool
+    {
+        return false;
+    }
+    func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool
+    {
+        return randomNumberOfDotMarkersForDay[dayView.date.day] > 0
+    }
+    func dotMarker(colorOnDayView dayView: DayView) -> [UIColor]
+    {
+        let n = randomNumberOfDotMarkersForDay[dayView.date.day]
+        
+        if(n == 0)
+        {
+            return []
+        }
+        else if n == 1
+        {
+            return [UIColor.lightGray];
+        }
+        
+        return [UIColor.lightGray, UIColor.lightGray];
+    }
+    func dotMarker(moveOffsetOnDayView dayView: DayView) -> CGFloat
+    {
+        return CGFloat(12.0);
+    }
+    func dotMarker(sizeOnDayView dayView: DayView) -> CGFloat
+    {
+        return CGFloat(4.0);
+    }
+
     
     
     func weekdaySymbolType() -> WeekdaySymbolType {

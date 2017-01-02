@@ -94,8 +94,13 @@ extension CVAuxiliaryView {
         let startAngle = CGFloat(0)
         let endAngle = CGFloat(M_PI * 2.0)
         let clockwise = true
+        var r = radius
+        if r < 2
+        {
+            r = 2
+        }
 
-        let path = UIBezierPath(arcCenter: arcCenter, radius: radius,
+        let path = UIBezierPath(arcCenter: arcCenter, radius: r,
                                 startAngle: startAngle, endAngle: endAngle, clockwise: clockwise)
 
         return path
