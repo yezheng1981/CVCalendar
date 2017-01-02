@@ -339,7 +339,10 @@ extension ViewController: CVCalendarViewAppearanceDelegate {
         return 0
     }
     
-    func dayLabelFont(by weekDay: Weekday, status: CVStatus, present: CVPresent) -> UIFont { return UIFont.systemFont(ofSize: 14) }
+    func dayLabelFont(by weekDay: Weekday, status: CVStatus, present: CVPresent) -> UIFont
+    {
+        return UIFont.systemFont(ofSize: 18)
+    }
     
     func dayLabelColor(by weekDay: Weekday, status: CVStatus, present: CVPresent) -> UIColor? {
         switch (weekDay, status, present) {
